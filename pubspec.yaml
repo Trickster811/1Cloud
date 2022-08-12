@@ -35,6 +35,8 @@ dependencies:
   font_awesome_flutter:
   flutter_svg:
   flutter_launcher_icons:
+  badges:
+  grouped_list:
 
 dev_dependencies:
   flutter_test:

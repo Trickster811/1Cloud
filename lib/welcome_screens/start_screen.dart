@@ -55,6 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         actions: [
+          index == 1
+              ? IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    'assets/icons/search.svg',
+                    color: kPrimaryColor,
+                  ),
+                )
+              : Container(),
           IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
@@ -74,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: screens[index],
       bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        color: kSecondaryColor,
+        // color: kSecondaryColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -161,13 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   backgroundColor: kPrimaryColor,
-      //   tooltip: 'Action',
-      //   child: SvgPicture.asset('assets/icons/plus.1.svg'),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      
     );
   }
 }

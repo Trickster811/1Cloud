@@ -7,6 +7,24 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipOval(
+            child: Image.asset(
+              'assets/images/girl_studying_with_music.png',
+              fit: BoxFit.cover,
+              height: 100,
+              width: 100,
+            ),
+          ),
+          Text(
+            '@julie Queen',
+            style: TextStyle(fontSize: 30),
+          ),
+        ],
+      ),
+    );
   }
 }
