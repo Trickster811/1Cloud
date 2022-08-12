@@ -138,7 +138,7 @@ class ChatScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: 8.0,
               ),
-              // height: (screenWidth / 100) * 15,
+              height: (screenWidth / 100) * 15,
               width: (screenWidth / 100) * 65,
               // color: Colors.red,
               child: Column(

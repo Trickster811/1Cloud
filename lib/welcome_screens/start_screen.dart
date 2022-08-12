@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               icon: index == 1
                   ? SvgPicture.asset(
-                      'assets/icons/chat.svg',
+                      'assets/icons/chat.5.svg',
                       color: kPrimaryColor,
                     )
                   : SvgPicture.asset(
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               icon: index == 2
                   ? SvgPicture.asset(
-                      'assets/icons/plus.2.svg',
+                      'assets/icons/plus.3.svg',
                       color: kPrimaryColor,
                     )
                   : SvgPicture.asset(
@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               icon: index == 3
                   ? SvgPicture.asset(
-                      'assets/icons/search.2.svg',
+                      'assets/icons/search.6.svg',
                       color: kPrimaryColor,
                     )
                   : SvgPicture.asset(
@@ -159,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               icon: index == 4
                   ? SvgPicture.asset(
-                      'assets/icons/profile.5.svg',
+                      'assets/icons/profile.3.svg',
                       color: kPrimaryColor,
                     )
                   : SvgPicture.asset(

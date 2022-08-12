@@ -37,6 +37,9 @@ dependencies:
   flutter_launcher_icons:
   badges:
   grouped_list:
+  intl:
+  image_picker:
+  # File:
 
 dev_dependencies:
   flutter_test:
@@ -84,17 +87,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+    - family: Comfortaa_light
+      fonts:
+        - asset: assets/fonts/Comfortaa-Light.ttf
+    - family: Comfortaa_regular
+      fonts:
+        - asset: assets/fonts/Comfortaa-Regular.ttf
+    - family: Comfortaa_bold
+      fonts:
+        - asset: assets/fonts/Comfortaa-Bold.ttf
+  
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

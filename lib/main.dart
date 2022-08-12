@@ -1,6 +1,12 @@
+// ************************************************************
+// ************************************************************
+// ***         Copyright 2022. All rights reserved.         ***
+// ***                by Jo@chim Ned@ouk@.                  ***
+// ************************************************************
+// ************************************************************
+
 import 'package:flutter/material.dart';
 import 'package:icloud/welcome_screens/loading_page%20copy.dart';
-import 'package:icloud/welcome_screens/start_screen.dart';
 
 void main() {
   runApp(const MyApp());
