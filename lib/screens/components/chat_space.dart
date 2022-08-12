@@ -136,7 +136,7 @@ class _ChatSpaceState extends State<ChatSpace> {
       body: Column(
         children: [
           Expanded(child: Container(
-            Groupe
+          
           )),
           Container(
             color: Colors.white,
