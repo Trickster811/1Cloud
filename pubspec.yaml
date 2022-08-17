@@ -58,7 +58,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: assets/images/1_cloud.png
+  image_path: assets/images/1_cloud_logo_reversed.png
 
 
 

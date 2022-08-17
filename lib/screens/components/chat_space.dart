@@ -273,13 +273,6 @@ class _ChatSpaceState extends State<ChatSpace> {
                     ? IconButton(
                         onPressed: () {
                           pickImage(ImageSource.camera);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  EditPageScreen(image: image!),
-                            ),
-                          );
                         },
                         icon: SvgPicture.asset(
                           'assets/icons/camera.2.svg',
@@ -326,9 +319,15 @@ class _ChatSpaceState extends State<ChatSpace> {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
+      // setState(() {
+      //   this.image = imageTemporary;
+      // });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditPageScreen(image: imageTemporary),
+        ),
+      );
     } on PlatformException catch (e) {
       showCupertinoModalPopup(
         context: context,
@@ -379,10 +378,11 @@ class EditPageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final inputController1 = TextEditingController();
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBody: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 8,
+        elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.maybePop(context),
           icon: SvgPicture.asset(
@@ -430,11 +430,13 @@ class EditPageScreen extends StatelessWidget {
                       },
                       onSubmitted: (String text) {},
                       cursorWidth: 1.0,
-                      cursorColor: kPrimaryColor,
+                      cursorColor: Colors.white,
                       decoration: InputDecoration(
+                        focusColor: Colors.white,
+                        fillColor: Color.fromARGB(255, 255, 255, 255),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: kPrimaryColor.withOpacity(0.8),
+                            color: Colors.white.withOpacity(0.8),
                           ),
                           borderRadius: BorderRadius.all(
                             Radius.circular(1000.0),
@@ -442,7 +444,7 @@ class EditPageScreen extends StatelessWidget {
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: kPrimaryColor.withOpacity(0.8),
+                            color: Colors.white.withOpacity(0.8),
                           ),
                           borderRadius: BorderRadius.all(
                             Radius.circular(1000.0),
@@ -476,7 +478,7 @@ class EditPageScreen extends StatelessWidget {
                   },
                   icon: SvgPicture.asset(
                     'assets/icons/send.3.svg',
-                    color: kPrimaryColor,
+                    color: Colors.blue,
                   ),
                 ),
               ],
