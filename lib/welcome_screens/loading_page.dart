@@ -52,7 +52,27 @@ class _LoadingScreenState extends State<LoadingScreen> {
             height: 100,
             width: 100,
           ),
-          Spacer(),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            'One Cloud',
+            style: TextStyle(
+              fontSize: 15,
+              fontFamily: 'Comfortaa_bold',
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            'One Cloud',
+            style: TextStyle(
+              fontSize: 10,
+              fontFamily: 'Comfortaa_bold',
+              color: Colors.black45,
+            ),
+          ),
         ],
       ),
     );
