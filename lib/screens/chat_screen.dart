@@ -134,32 +134,35 @@ class ChatScreen extends StatelessWidget {
                 width: 50,
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ),
-              height: (screenWidth / 100) * 15,
-              width: (screenWidth / 100) * 65,
-              // color: Colors.red,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Spacer(),
-                  Text(
-                    item.username,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
+                height: (screenWidth / 100) * 15,
+                // width: (screenWidth / 100) * 65,
+                // color: Colors.red,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Spacer(),
+                    Text(
+                      item.username,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  Text(
-                    item.message,
-                    style: TextStyle(),
-                  ),
-                  Spacer(),
-                ],
+                    // Spacer(),
+
+                    Text(
+                      item.message,
+                      style: TextStyle(),
+                    ),
+                    // Spacer(),
+                  ],
+                ),
               ),
             ),
             Column(
@@ -167,12 +170,15 @@ class ChatScreen extends StatelessWidget {
                 Text(item.time),
                 Badge(
                   animationType: BadgeAnimationType.scale,
-                  badgeColor: kPrimaryColor,
+                  badgeColor: Colors.blueAccent,
                   position: BadgePosition.center(),
                   badgeContent: Text(
                     item.badge,
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w500),
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                    ),
                   ),
                   child: IconButton(
                     onPressed: () {},

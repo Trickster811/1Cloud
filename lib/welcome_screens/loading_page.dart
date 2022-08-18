@@ -22,13 +22,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 250, 250, 250),
+      backgroundColor: Color.fromARGB(255, 228, 228, 228),
       body: initScreen(context),
     );
   }
 
   startTime() async {
-    var duration = new Duration(seconds: 3);
+    var duration = new Duration(seconds: 5);
     return new Timer(duration, route);
   }
 
@@ -42,39 +42,59 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   initScreen(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Spacer(),
-          Image.asset(
-            'assets/images/1_cloud.png',
-            height: 100,
-            width: 100,
+    return Stack(
+      children: [
+        Positioned(
+          right: -MediaQuery.of(context).size.width * 1.5,
+          bottom: 0,
+          child: Image.asset(
+            'assets/images/cloud.svg',
+            color: Colors.white.withOpacity(0.4),
+            // colorBlendMode: BlendMode.modulate,
+            width: MediaQuery.of(context).size.width * 3,
+            height: MediaQuery.of(context).size.height * 0.5,
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'One Cloud',
-            style: TextStyle(
-              fontSize: 15,
-              fontFamily: 'Comfortaa_bold',
+        ),
+        SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Spacer(),
+                Image.asset(
+                  'assets/images/1_cloud_logo.svg',
+                  height: 75,
+                  width: 75,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'One Cloud',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'Comfortaa_bold',
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Work Social Network',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontFamily: 'Comfortaa_bold',
+                    color: Colors.black45,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'One Cloud',
-            style: TextStyle(
-              fontSize: 10,
-              fontFamily: 'Comfortaa_bold',
-              color: Colors.black45,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

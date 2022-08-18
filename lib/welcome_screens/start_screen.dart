@@ -1,9 +1,12 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icloud/constants.dart';
 import 'package:icloud/screens/account_screen.dart';
 import 'package:icloud/screens/chat_screen.dart';
 import 'package:icloud/screens/home_screen.dart';
+import 'package:icloud/screens/my_cloud_screen.dart';
+import 'package:icloud/screens/notifications_screen.dart';
 import 'package:icloud/screens/search_screen.dart';
 import 'package:icloud/screens/storie_screen.dart';
 
@@ -27,18 +30,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final screens = [
     HomeScreen(),
-    ChatScreen(),
+    MyCloudScreen(),
     StorieScreen(),
     SearchScreen(),
     AccountScreen(),
+    ChatScreen(),
   ];
 
   final screenName = [
-    '1Cloud',
-    'Chat',
+    'One Cloud',
+    'My Cloud',
     'Storie',
     'Search',
-    'Profile',
+    'Account',
+    'Chat',
   ];
 
   @override
@@ -52,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(
             color: kPrimaryColor,
             fontSize: 25,
+            fontFamily: 'Comfortaa_bold',
           ),
         ),
         actions: [
@@ -63,12 +69,54 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: kPrimaryColor,
                   ),
                 )
-              : Container(),
+              : IconButton(
+                  onPressed: () {
+                    setState(() {
+                      index = 5;
+                    });
+                  },
+                  icon: Badge(
+                    animationType: BadgeAnimationType.scale,
+                    badgeColor: Colors.blueAccent,
+                    // position: BadgePosition.center(),
+                    badgeContent: Text(
+                      '99+',
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/icons/chat.6.svg',
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
           IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              'assets/icons/notification.2.svg',
-              color: kPrimaryColor,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationScreen(),
+                ),
+              );
+            },
+            icon: Badge(
+              animationType: BadgeAnimationType.scale,
+              badgeColor: Colors.blueAccent,
+              // position: BadgePosition.center(),
+              badgeContent: Text(
+                '6',
+                style: TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              child: SvgPicture.asset(
+                'assets/icons/notification.2.svg',
+                color: kPrimaryColor,
+              ),
             ),
           ),
           IconButton(
@@ -93,15 +141,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   index = 0;
                 });
               },
-              icon: index == 0
-                  ? SvgPicture.asset(
-                      'assets/icons/home.3.svg',
-                      color: kPrimaryColor,
-                    )
-                  : SvgPicture.asset(
-                      'assets/icons/home.svg',
-                      color: kPrimaryColor,
+              icon: Center(
+                child: Column(
+                  children: [
+                    index == 0
+                        ? SvgPicture.asset(
+                            'assets/icons/home.3.svg',
+                            color: kPrimaryColor,
+                          )
+                        : SvgPicture.asset(
+                            'assets/icons/home.svg',
+                            color: kPrimaryColor,
+                          ),
+                    Spacer(),
+                    Text(
+                      'Home',
+                      style: TextStyle(
+                        fontSize: 7,
+                        fontFamily: 'Comfortaa_bold',
+                      ),
                     ),
+                  ],
+                ),
+              ),
             ),
             IconButton(
               onPressed: () {
@@ -109,15 +171,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   index = 1;
                 });
               },
-              icon: index == 1
-                  ? SvgPicture.asset(
-                      'assets/icons/chat.5.svg',
-                      color: kPrimaryColor,
-                    )
-                  : SvgPicture.asset(
-                      'assets/icons/chat.6.svg',
-                      color: kPrimaryColor,
+              icon: Column(
+                children: [
+                  index == 1
+                      ? SvgPicture.asset(
+                          'assets/icons/chart.2.svg',
+                          color: kPrimaryColor,
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/chart.4.svg',
+                          color: kPrimaryColor,
+                        ),
+                  Spacer(),
+                  Text(
+                    'Cloud',
+                    style: TextStyle(
+                      fontSize: 7,
+                      fontFamily: 'Comfortaa_bold',
                     ),
+                  ),
+                ],
+              ),
             ),
             IconButton(
               onPressed: () {
@@ -125,15 +199,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   index = 2;
                 });
               },
-              icon: index == 2
-                  ? SvgPicture.asset(
-                      'assets/icons/plus.3.svg',
-                      color: kPrimaryColor,
-                    )
-                  : SvgPicture.asset(
-                      'assets/icons/plus.svg',
-                      color: kPrimaryColor,
+              icon: Column(
+                children: [
+                  index == 2
+                      ? SvgPicture.asset(
+                          'assets/icons/plus.3.svg',
+                          color: kPrimaryColor,
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/plus.1.svg',
+                          color: kPrimaryColor,
+                        ),
+                  Spacer(),
+                  Text(
+                    'Add',
+                    style: TextStyle(
+                      fontSize: 7,
+                      fontFamily: 'Comfortaa_bold',
                     ),
+                  ),
+                ],
+              ),
             ),
             IconButton(
               onPressed: () {
@@ -141,15 +227,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   index = 3;
                 });
               },
-              icon: index == 3
-                  ? SvgPicture.asset(
-                      'assets/icons/search.6.svg',
-                      color: kPrimaryColor,
-                    )
-                  : SvgPicture.asset(
-                      'assets/icons/search.svg',
-                      color: kPrimaryColor,
+              icon: Column(
+                children: [
+                  index == 3
+                      ? SvgPicture.asset(
+                          'assets/icons/search.6.svg',
+                          color: kPrimaryColor,
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/search.svg',
+                          color: kPrimaryColor,
+                        ),
+                  Spacer(),
+                  Text(
+                    'Search',
+                    style: TextStyle(
+                      fontSize: 7,
+                      fontFamily: 'Comfortaa_bold',
                     ),
+                  ),
+                ],
+              ),
             ),
             IconButton(
               onPressed: () {
@@ -157,20 +255,31 @@ class _MyHomePageState extends State<MyHomePage> {
                   index = 4;
                 });
               },
-              icon: index == 4
-                  ? SvgPicture.asset(
-                      'assets/icons/profile.3.svg',
-                      color: kPrimaryColor,
-                    )
-                  : SvgPicture.asset(
-                      'assets/icons/profile.4.svg',
-                      color: kPrimaryColor,
+              icon: Column(
+                children: [
+                  index == 4
+                      ? SvgPicture.asset(
+                          'assets/icons/profile.3.svg',
+                          color: kPrimaryColor,
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/profile.4.svg',
+                          color: kPrimaryColor,
+                        ),
+                  Spacer(),
+                  Text(
+                    'Account',
+                    style: TextStyle(
+                      fontSize: 7,
+                      fontFamily: 'Comfortaa_bold',
                     ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      
     );
   }
 }

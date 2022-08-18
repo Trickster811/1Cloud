@@ -6,13 +6,22 @@
 // ************************************************************
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:icloud/welcome_screens/loading_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then(
+    (value) => runApp(
+      const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget { 
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -22,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'iCloud',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Color.fromARGB(255, 226, 226, 226),
+        scaffoldBackgroundColor: Color.fromARGB(255, 243, 243, 243),
       ),
       debugShowCheckedModeBanner: false,
       home: LoadingScreen(),
