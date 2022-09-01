@@ -2,9 +2,10 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icloud/constants.dart';
+import 'package:icloud/functions.dart';
 import 'package:icloud/screens/components/notifications_view.dart';
 
-class NotificationScreen extends StatelessWidget {
+class NotificationScreen extends StatelessWidget{
   final List notification = [
     NotificationsList(
       icon: 'assets/icons/star.4.svg',
@@ -35,55 +36,15 @@ class NotificationScreen extends StatelessWidget {
       numberMessage: 00,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: () => Navigator.maybePop(context),
-          icon: SvgPicture.asset(
-            'assets/icons/arrow-left-2.2.svg',
-            color: kPrimaryColor,
-          ),
-        ),
-        title: Text(
-          'Notifications',
-          style: TextStyle(
-            color: kPrimaryColor,
-            fontSize: 20,
-            fontFamily: 'Comfortaa_bold',
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              'assets/icons/search.svg',
-              color: kPrimaryColor,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              'assets/icons/more-circle.1.svg',
-              color: kPrimaryColor,
-            ),
-          ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          for (final item in notification)
+            notifications_element(context, item),
         ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              for (final item in notification)
-                notifications_element(context, item),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -96,8 +57,8 @@ class NotificationScreen extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => NotificationViewScreen(
-              notificationsList: element,
-            ),
+                notificationsList: element,
+                ),
           ),
         );
       },

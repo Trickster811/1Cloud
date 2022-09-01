@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icloud/constants.dart';
+import 'package:icloud/functions.dart';
 import 'package:icloud/screens/notifications_screen.dart';
 
-class NotificationViewScreen extends StatelessWidget {
+class NotificationViewScreen extends StatefulWidget {
   final NotificationsList notificationsList;
 
   const NotificationViewScreen({
     Key? key,
     required this.notificationsList,
+    
   }) : super(key: key);
+
+  @override
+  State<NotificationViewScreen> createState() => _NotificationViewScreenState();
+}
+
+class _NotificationViewScreenState extends State<NotificationViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +33,7 @@ class NotificationViewScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          notificationsList.title,
+          widget.notificationsList.title,
           style: TextStyle(
             color: kPrimaryColor,
             fontSize: 15,
@@ -40,16 +48,10 @@ class NotificationViewScreen extends StatelessWidget {
               color: kPrimaryColor,
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              'assets/icons/more-circle.1.svg',
-              color: kPrimaryColor,
-            ),
-          ),
+          
         ],
       ),
-      body: notificationsList.numberMessage != 0
+      body: widget.notificationsList.numberMessage != 0
           ? Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 20.0,
@@ -58,7 +60,9 @@ class NotificationViewScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    for (var i = 0; i < notificationsList.numberMessage; i++)
+                    for (var i = 0;
+                        i < widget.notificationsList.numberMessage;
+                        i++)
                       itemBuilder(),
                   ],
                 ),
@@ -66,24 +70,25 @@ class NotificationViewScreen extends StatelessWidget {
             )
           : Center(
               child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  'assets/icons/category.4.svg',
-                  color: Colors.black26,
-                  height: 75,
-                  width: 75,
-                ),
-                Text(
-                  'Empty!!!',
-                  style: TextStyle(
-                    fontFamily: 'Comfortaa_bold',
-                    fontSize: 20,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/category.4.svg',
                     color: Colors.black26,
+                    height: 75,
+                    width: 75,
                   ),
-                ),
-              ],
-            ),),
+                  Text(
+                    'Empty!!!',
+                    style: TextStyle(
+                      fontFamily: 'Comfortaa_bold',
+                      fontSize: 20,
+                      color: Colors.black26,
+                    ),
+                  ),
+                ],
+              ),
+            ),
     );
   }
 
@@ -123,11 +128,11 @@ class NotificationViewScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SvgPicture.asset(
-                        notificationsList.icon,
-                        color: notificationsList.color,
+                        widget.notificationsList.icon,
+                        color: widget.notificationsList.color,
                       ),
                       Text(
-                        notificationsList.title,
+                        widget.notificationsList.title,
                         style: TextStyle(
                           fontFamily: 'Comfortaa_bold',
                           fontSize: 15,

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:icloud/welcome_screens/start_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -45,14 +46,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Stack(
       children: [
         Positioned(
-          right: -MediaQuery.of(context).size.width * 1.5,
+          right: -MediaQuery.of(context).size.width,
           bottom: 0,
-          child: Image.asset(
+          child: SvgPicture.asset(
             'assets/images/cloud.svg',
             color: Colors.white.withOpacity(0.4),
             // colorBlendMode: BlendMode.modulate,
-            width: MediaQuery.of(context).size.width * 3,
-            height: MediaQuery.of(context).size.height * 0.5,
+            // width: MediaQuery.of(context).size.width * 3,
+            height: MediaQuery.of(context).size.height * 0.6,
           ),
         ),
         SafeArea(
@@ -61,8 +62,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Spacer(),
-                Image.asset(
-                  'assets/images/1_cloud_logo.svg',
+                SvgPicture.asset(
+                  'assets/images/1_Cloud_logo.svg',
                   height: 75,
                   width: 75,
                 ),
@@ -88,7 +89,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 100,
                 ),
               ],
             ),

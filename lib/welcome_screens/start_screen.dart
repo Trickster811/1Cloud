@@ -2,10 +2,10 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icloud/constants.dart';
+import 'package:icloud/functions.dart';
 import 'package:icloud/screens/account_screen.dart';
 import 'package:icloud/screens/chat_screen.dart';
 import 'package:icloud/screens/home_screen.dart';
-import 'package:icloud/screens/my_cloud_screen.dart';
 import 'package:icloud/screens/notifications_screen.dart';
 import 'package:icloud/screens/search_screen.dart';
 import 'package:icloud/screens/storie_screen.dart';
@@ -27,10 +27,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   int index = 0;
+  double appBarHeightSize = 0;
 
   final screens = [
     HomeScreen(),
-    MyCloudScreen(),
+    NotificationScreen(),
     StorieScreen(),
     SearchScreen(),
     AccountScreen(),
@@ -39,96 +40,92 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final screenName = [
     'One Cloud',
-    'My Cloud',
-    'Storie',
+    'Notifications',
+    'My Post',
     'Search',
     'Account',
     'Chat',
   ];
 
+  List<List<String>> menuItemList = [
+    [
+      'assets/icons/setting.2.svg',
+      'Settings',
+    ],
+    [
+      'assets/icons/info-square.4.svg',
+      'About',
+    ],
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          screenName[index],
-          style: TextStyle(
+    AppBar appBar = AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: Text(
+        screenName[index],
+        style: TextStyle(
+          color: kPrimaryColor,
+          fontSize: 25,
+          fontFamily: 'Comfortaa_bold',
+        ),
+      ),
+      actions: [
+        index == 1
+            ? IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  'assets/icons/search.svg',
+                  color: kPrimaryColor,
+                ),
+              )
+            : index == 1
+                ? Container()
+                : IconButton(
+                    onPressed: () {
+                      setState(() {
+                        index = 5;
+                      });
+                    },
+                    icon: Badge(
+                      animationType: BadgeAnimationType.scale,
+                      badgeColor: Colors.blueAccent,
+                      // position: BadgePosition.center(),
+                      badgeContent: Text(
+                        '99+',
+                        style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      child: SvgPicture.asset(
+                        'assets/icons/chat.6.svg',
+                        color: kPrimaryColor,
+                      ),
+                    ),
+                  ),
+        IconButton(
+          onPressed: () {
+            UsualFunctions.openDialog(context, menuItemList, appBarHeightSize);
+          },
+          icon: SvgPicture.asset(
+            'assets/icons/more-circle.1.svg',
             color: kPrimaryColor,
-            fontSize: 25,
-            fontFamily: 'Comfortaa_bold',
           ),
         ),
-        actions: [
-          index == 1
-              ? IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    'assets/icons/search.svg',
-                    color: kPrimaryColor,
-                  ),
-                )
-              : IconButton(
-                  onPressed: () {
-                    setState(() {
-                      index = 5;
-                    });
-                  },
-                  icon: Badge(
-                    animationType: BadgeAnimationType.scale,
-                    badgeColor: Colors.blueAccent,
-                    // position: BadgePosition.center(),
-                    badgeContent: Text(
-                      '99+',
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    child: SvgPicture.asset(
-                      'assets/icons/chat.6.svg',
-                      color: kPrimaryColor,
-                    ),
-                  ),
+      ],
+    );
+    return Scaffold(
+      appBar: appBar,
+      body: index != 4
+          ? screens[index]
+          : index != 5
+              ? screens[index]
+              : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
+                  child: screens[index],
                 ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NotificationScreen(),
-                ),
-              );
-            },
-            icon: Badge(
-              animationType: BadgeAnimationType.scale,
-              badgeColor: Colors.blueAccent,
-              // position: BadgePosition.center(),
-              badgeContent: Text(
-                '6',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              child: SvgPicture.asset(
-                'assets/icons/notification.2.svg',
-                color: kPrimaryColor,
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              'assets/icons/more-circle.1.svg',
-              color: kPrimaryColor,
-            ),
-          ),
-        ],
-      ),
-      body: screens[index],
       bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         // color: kSecondaryColor,
@@ -138,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               onPressed: () {
                 setState(() {
+                  appBarHeightSize = appBar.preferredSize.height;
                   index = 0;
                 });
               },
@@ -168,23 +166,37 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               onPressed: () {
                 setState(() {
+                  appBarHeightSize = appBar.preferredSize.height;
                   index = 1;
                 });
               },
               icon: Column(
                 children: [
-                  index == 1
-                      ? SvgPicture.asset(
-                          'assets/icons/chart.2.svg',
-                          color: kPrimaryColor,
-                        )
-                      : SvgPicture.asset(
-                          'assets/icons/chart.4.svg',
-                          color: kPrimaryColor,
-                        ),
+                  Badge(
+                    animationType: BadgeAnimationType.scale,
+                    badgeColor: Colors.blueAccent,
+                    // position: BadgePosition.center(),
+                    badgeContent: Text(
+                      '6',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    child: index == 1
+                        ? SvgPicture.asset(
+                            'assets/icons/notification.5.svg',
+                            color: kPrimaryColor,
+                          )
+                        : SvgPicture.asset(
+                            'assets/icons/notification.2.svg',
+                            color: kPrimaryColor,
+                          ),
+                  ),
                   Spacer(),
                   Text(
-                    'Cloud',
+                    'Updates',
                     style: TextStyle(
                       fontSize: 7,
                       fontFamily: 'Comfortaa_bold',
@@ -196,6 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               onPressed: () {
                 setState(() {
+                  appBarHeightSize = appBar.preferredSize.height;
                   index = 2;
                 });
               },
@@ -224,6 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               onPressed: () {
                 setState(() {
+                  appBarHeightSize = appBar.preferredSize.height;
                   index = 3;
                 });
               },
@@ -252,6 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               onPressed: () {
                 setState(() {
+                  appBarHeightSize = appBar.preferredSize.height;
                   index = 4;
                 });
               },
